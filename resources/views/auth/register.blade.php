@@ -2,76 +2,92 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
+  <div class="row">
+    <div class="col s12 m10 offset-m1 l8 offset-l2">
+      <div class="card">
+        <form  method="POST" action="{{ route('register') }}">
+          <div class="card-content">
+            @csrf
+            <span class="card-title">Créez votre compte</span>
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+            <hr>
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+            <x-input
+              name="firstname"
+              type="text"
+              icon="person"
+              label="Prénom"
+              required="true"
+            ></x-input>
 
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+            <x-input
+              name="name"
+              type="text"
+              icon="person"
+              label="Nom"
+              required="true"
+            ></x-input>
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+            <x-input
+              name="email"
+              type="email"
+              icon="mail"
+              label="Adresse mail"
+              required="true"
+            ></x-input>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+            <x-input
+              name="password"
+              type="password"
+              icon="lock"
+              label="Mot de passe"
+              required="true"
+            ></x-input>
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <i class="material-icons prefix">lock</i>
+                <input id="password-confirm" type="password" name="password_confirmation" required>
+                <label for="password-confirm">Confirmation du mot de passe</label>
+              </div>
             </div>
-        </div>
+
+            <div class="row col s12">
+              <label>
+                <input type="checkbox" name="newsletter" id="newsletter" {{ old('newsletter') ? 'checked' : '' }}>
+                <span>Je désire recevoir votre lettre d'information</span>
+              </label>
+            </div>
+
+            <div class="row col s12">
+              <label>
+                <input type="checkbox" name="rgpd" id="rgpd" {{ old('rgpd') ? 'checked' : '' }}>
+                <!-- Route Page -->
+                <span>J'accepte les termes et conditions de <a href="{{ route('login', 'politique-de-confidentialite') }}" target="_blank">la politique de confidentialité</a>.</span>
+              </label>
+            </div>
+            
+            <p>
+              <button class="btn waves-effect waves-light disabled" style="width: 100%" type="submit" name="action">
+                Enregistrer
+              </button>
+            </p>
+
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 </div>
+@endsection
+
+@section('javascript')
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const rgpd = document.querySelector('#rgpd');
+      rgpd.checked = false;
+      rgpd.addEventListener('click', () => document.querySelector('button[type=submit]').classList.toggle('disabled'));
+    });
+  </script>
 @endsection

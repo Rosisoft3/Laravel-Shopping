@@ -2,64 +2,54 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('password.update') }}">
-                        @csrf
+  <div class="row">
+    <div class="col s12 m10 offset-m1 l8 offset-l2">
+        <div class="card">
+          <form  method="POST" action="{{ route('password.update') }}">
+            <div class="card-content">
+              @csrf
+              <input type="hidden" name="token" value="{{ $token }}">
 
-                        <input type="hidden" name="token" value="{{ $token }}">
+              <span class="card-title">Renouvellement du mot de passe</span>
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+              <hr>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
+              <x-input
+                name="email"
+                type="email"
+                icon="mail"
+                label="Adresse mail"
+                required="true"
+                autofocus="true" 
+              ></x-input>
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+              <x-input
+                name="password"
+                type="password"
+                icon="lock"
+                label="Mot de passe"
+                required="true"
+              ></x-input>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Reset Password') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+              <div class="row">
+                <div class="input-field col s12">
+                  <i class="material-icons prefix">lock</i>
+                  <input id="password-confirm" type="password" name="password_confirmation" required>
+                  <label for="password-confirm">Confirmation du mot de passe</label>
                 </div>
+              </div>
+
+              <p>
+                <button class="btn waves-effect waves-light" type="submit" name="action">Renouveler !
+                  <i class="material-icons right">lock_open</i>
+                </button>
+              </p>
+
             </div>
-        </div>
+          </form>
+      </div>
     </div>
+  </div>
 </div>
 @endsection

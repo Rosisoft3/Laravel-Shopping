@@ -1,8 +1,8 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
-// Variables
-@import 'variables';
+//Materialize
+@import "materialize-css/materialize.scss";
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+main { padding-top: 40px; };
+body { background-color: #f1f1ff; }
+.page-footer { margin-top: 100px; }
