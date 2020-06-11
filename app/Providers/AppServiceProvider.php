@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\View;
+use Cart;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,5 +28,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+        View::composer(['layouts.app', 'products.show'], function ($view) {
+            $view->with([
+                'cartCount' => Cart::getTotalQuantity(), 
+                'cartTotal' => Cart::getTotal(),
+            ]);
+        });
     }
 }

@@ -21,9 +21,17 @@
   </form>
   <nav>
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo"><img src="/images/logo1.png" width="210px" alt="Logo"></a>
-      <a href="#" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    
+    <a href="{{ route('home') }}" class="brand-logo"><img src="/images/logo1.png" width="210px" alt="Logo"></a>
+    <a href="{{ route('home') }}" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+     
       <ul class="right hide-on-med-and-down">
+
+        @if($cartCount)
+        <li>
+          <a class="tooltipped" href="{{ route('panier.index') }}" data-position="bottom" data-tooltip="Voir mon panier"><i class="material-icons left">shopping_cart</i>Panier({{ $cartCount }})</a>
+        </li>
+      @endif      
       @guest        
         <li><a href="{{ route('login') }}"><i class="material-icons left">perm_identity</i>Connexion</a></li>
       @else
@@ -39,6 +47,11 @@
     </div>
   </nav>
   <ul class="sidenav" id="mobile">
+    @if($cartCount)
+      <li>
+        <a class="tooltipped" href="{{ route('panier.index') }}" data-position="bottom" data-tooltip="Voir mon panier">Panier({{ $cartCount }})</a>
+      </li>
+    @endif
     @guest
       <li><a href="{{ route('login') }}">Connexion</a></li>
     @else
