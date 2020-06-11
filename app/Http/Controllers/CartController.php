@@ -17,18 +17,8 @@ class CartController extends Controller
     {
         $content = Cart::getContent();
         $total = Cart::getTotal();
-    
-        return view('cart.index', compact('content', 'total'));
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('cart.index', compact('content', 'total'));
     }
 
     /**
@@ -40,7 +30,7 @@ class CartController extends Controller
     public function store(Request $request)
     {
         $product = Product::findOrFail($request->id);
-      
+          
         Cart::add([
             'id' => $product->id,
             'name' => $product->name,
@@ -50,28 +40,8 @@ class CartController extends Controller
             'associatedModel' => $product,
           ]
         );
-        return redirect()->back()->with('cart', 'ok');    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return redirect()->back()->with('cart', 'ok');
     }
 
     /**
@@ -86,6 +56,7 @@ class CartController extends Controller
         Cart::update($id, [
             'quantity' => ['relative' => false, 'value' => $request->quantity],
         ]);
+        
         return redirect(route('panier.index'));
     }
 
@@ -98,6 +69,7 @@ class CartController extends Controller
     public function destroy($id)
     {
         Cart::remove($id);
+
         return redirect(route('panier.index'));
     }
 }

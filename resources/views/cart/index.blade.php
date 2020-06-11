@@ -50,7 +50,7 @@
           <p>
             <a  href="{{ route('home') }}">Continuer mes achats</a>
             @if($total)
-              <a href="#">Commander</a>
+              <a href="{{ route('commandes.create') }}">Commander</a>
             @endif
           </p>
         </div>
