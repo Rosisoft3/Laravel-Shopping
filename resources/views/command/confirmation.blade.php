@@ -1,5 +1,37 @@
 @extends('layouts.app')
 
+@section('css')
+  <style>
+    .StripeElement {
+      box-sizing: border-box;
+
+      height: 40px;
+
+      padding: 10px 12px;
+
+      border: 1px solid transparent;
+      border-radius: 4px;
+      background-color: white;
+
+      box-shadow: 0 1px 3px 0 #e6ebf1;
+      -webkit-transition: box-shadow 150ms ease;
+      transition: box-shadow 150ms ease;
+    }
+
+    .StripeElement--focus {
+      box-shadow: 0 1px 3px 0 #cfd7df;
+    }
+
+    .StripeElement--invalid {
+      border-color: #fa755a;
+    }
+
+    .StripeElement--webkit-autofill {
+      background-color: #fefde5 !important;
+    }
+  </style>
+@endsection
+
 @section('content')
 <div class="container">
   <ul class="collection with-header">
@@ -102,11 +134,11 @@
           <p><strong>Votre commande vous sera envoyée dès réception du virement.</strong>.</p>
         @endif
         
-      @elseif($order->state->slug === 'carte' || $order->state->slug === 'erreur')
+        @elseif($order->state->slug === 'carte' || $order->state->slug === 'erreur')
         
-        {{-- On devra s'occuper de Stripe ici --}}
+          @include('command.partials.stripe')
 
-      @endif
+        @endif
 
       <div id="payment-ok" class="card center-align white-text green darken-4 hide">
         <div class="card-content">
@@ -124,4 +156,10 @@
   </ul>
 
 </div>
+@endsection
+
+@section('javascript')
+
+  @include('command.partials.stripejs')
+
 @endsection

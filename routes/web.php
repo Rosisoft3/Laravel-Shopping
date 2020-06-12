@@ -44,6 +44,7 @@ Route::middleware('auth')->group(function () {
   Route::prefix('commandes')->group(function () {
       Route::name('commandes.details')->post('details', 'DetailsController');
       Route::name('commandes.confirmation')->get('confirmation/{order}', 'OrdersController@confirmation');
+      Route::name('commandes.payment')->post('paiement/{order}', 'PaymentController');
       Route::resource('/', 'OrderController')->names([
           'create' => 'commandes.create',
           'store' => 'commandes.store',
