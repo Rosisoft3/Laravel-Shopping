@@ -69,11 +69,11 @@
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
-          <h5 class="white-text">Nom de la boutique</h5>
+          <h5 class="white-text">{{ $shop->name }}</h5>
           <ul>
-            <li class="grey-text text-lighten-3">Adresse de la boutique</li>
-            <li class="grey-text text-lighten-3">Appelez-nous...</li>
-            <li class="grey-text text-lighten-3">Écrivez-nous...</li>
+            <li class="grey-text text-lighten-3">{{ $shop->address }}</li>
+            <li class="grey-text text-lighten-3">Appelez-nous : {{ $shop->phone }}</li>
+            <li class="grey-text text-lighten-3">Écrivez-nous : {{ $shop->email }}</li>
             <br>
             <li><img src="/images/paiement.png" alt="Modes de paiement" width="250px"></li>
           </ul>
@@ -85,7 +85,7 @@
     </div>
     <div class="footer-copyright">
       <div class="container">
-        © 2020 Nom de la boutique
+        © 2020 {{ $shop->name }}
         <a class="grey-text text-lighten-4 right" href="#" target="_blank"><img src="/images/facebook.png" alt="Facebook"></a>
       </div>
     </div>

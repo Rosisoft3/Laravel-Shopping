@@ -2,6 +2,33 @@
 
 @section('content')
 <div class="container">
+
+  <div class="row">     
+    <div class="card">
+      <div class="card-content">
+      <span class="card-title center-align">{{ $shop->home }}</span>
+        <br>
+        <ul class="collapsible">
+          <li>
+            <div class="collapsible-header"><i class="material-icons">info</i>Informations générales</div>
+            <div class="collapsible-body informations">
+              <ul>
+                <li>{{ $shop->home_infos }}</li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <div class="collapsible-header"><i class="material-icons">local_shipping</i>Frais d'expédition</div>
+            <div class="collapsible-body informations">
+              <ul>
+                <li>{{ $shop->home_shipping }}</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
   
   <div class="row">
     <div class="col s12 cards-container">

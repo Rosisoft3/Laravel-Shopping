@@ -116,6 +116,6 @@ class OrderController extends Controller
 
         // Notifications à prévoir pour les administrateurs et l'utilisateur
 
-        //return redirect(route('commandes.confirmation', $order->id));
+        return redirect(route('commandes.confirmation', $order->id));
     }
 }
