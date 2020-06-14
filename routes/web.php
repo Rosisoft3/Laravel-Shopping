@@ -40,6 +40,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // Utilisateur authentifié
 Route::middleware('auth')->group(function () {
+     // Gestion du compte
+     Route::prefix('compte')->group(function () {
+        Route::name('rgpd.pdf')->get('rgpd/pdf', 'IdentiteController@pdf');
+        Route::name('rgpd')->get('rgpd', 'IdentiteController@rgpd');
+        Route::name('identite.edit')->get('identite', 'IdentiteController@edit');
+        Route::name('identite.update')->put('identite', 'IdentiteController@update');
+        Route::name('account')->get('/', 'AccountController');
+    });
   // Commandes
   Route::prefix('commandes')->group(function () {
       Route::name('commandes.details')->post('details', 'DetailsController');
