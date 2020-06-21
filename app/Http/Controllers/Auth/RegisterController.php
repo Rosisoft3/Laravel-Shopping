@@ -4,10 +4,16 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use App\Models\User;
+use App\Mail\Registered;
+use App\Models\{ User, Shop };
+
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Http\Request;
+
+
 
 class RegisterController extends Controller
 {
@@ -73,4 +79,18 @@ class RegisterController extends Controller
         'newsletter' => array_key_exists('newsletter', $data),
     ]);
 }
+
+
+protected function registered(Request $request, $user)
+{
+    $shop = Shop::firstOrFail();
+    Mail::to($user)->send(new Registered($shop));
+    $admins = User::whereAdmin(true)->get();
+    foreach($admins as $admin) {
+        // Là on prévoira de notifier les administrateurs
+    }        
+    return redirect(route('adresses.create'))->with('message', config('messages.registered'));
 }
+}
+
+

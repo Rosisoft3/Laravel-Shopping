@@ -42,6 +42,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::middleware('auth')->group(function () {
      // Gestion du compte
      Route::prefix('compte')->group(function () {
+        Route::name('invoice')->get('commandes/{order}/invoice', 'InvoiceController');
+        Route::resource('commandes', 'OrdersController')->only(['index', 'show'])->parameters(['commandes' => 'order']);
+        Route::resource('adresses', 'AddressController')->except('show');
         Route::name('rgpd.pdf')->get('rgpd/pdf', 'IdentiteController@pdf');
         Route::name('rgpd')->get('rgpd', 'IdentiteController@rgpd');
         Route::name('identite.edit')->get('identite', 'IdentiteController@edit');
