@@ -62,3 +62,6 @@ Route::middleware('auth')->group(function () {
       ])->only(['create', 'store']);
   });
 });
+
+
+Route::get('page/{page:slug}', 'HomeController@page')->name('page');

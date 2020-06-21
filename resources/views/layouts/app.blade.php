@@ -82,6 +82,11 @@
         </div>
         <div class="col l4 offset-l2 s12">
           <h5 class="white-text">Informations</h5>
+          <ul>
+            @foreach ($pages as $page)
+              <li><a class="grey-text text-lighten-3" href="{{ route('page', $page->slug) }}">{{ $page->title }}</a></li> 
+            @endforeach
+          </ul>
         </div>
       </div>
     </div>

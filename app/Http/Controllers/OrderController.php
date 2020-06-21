@@ -10,6 +10,7 @@ use Cart;
 use App\Models\ { Address, Country, Shop, State, Product, User, Page,Order };
 use Illuminate\Support\Facades\Mail;
 use App\Mail\{ NewOrder, ProductAlert, Ordered };
+use App\Notifications\NewOrder as NewOrderNotification;
 
 class OrderController extends Controller
 {
@@ -131,6 +132,7 @@ class OrderController extends Controller
         foreach($admins as $admin) {
             Mail::to($admin)->send(new NewOrder($shop, $order, $user));
             // On ajoutera une notification ici
+            $admin->notify(new NewOrderNotification($order));
         }        
                 
         // Notification au client

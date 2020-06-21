@@ -6,8 +6,9 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Route;
-use App\Models\Shop;
 use Cart;
+
+use App\Models\{ Shop, Page };
 
 
 class AppServiceProvider extends ServiceProvider
@@ -30,9 +31,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-        
+        View::share('pages', Page::all());
 		View::share('shop', Shop::firstOrFail());
-		
 		View::composer(['layouts.app', 'products.show'], function ($view) {
             $view->with([
                 'cartCount' => Cart::getTotalQuantity(), 

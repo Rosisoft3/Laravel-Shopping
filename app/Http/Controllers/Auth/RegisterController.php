@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
+use App\Notifications\NewUser;
 
 
 
@@ -88,6 +89,11 @@ protected function registered(Request $request, $user)
     $admins = User::whereAdmin(true)->get();
     foreach($admins as $admin) {
         // Là on prévoira de notifier les administrateurs
+        
+        $admins = User::whereAdmin(true)->get();
+        foreach($admins as $admin) {
+            $admin->notify(new NewUser());
+        }    
     }        
     return redirect(route('adresses.create'))->with('message', config('messages.registered'));
 }
