@@ -31,6 +31,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+        
+        View::composer('back.layout', function ($view) {
+            $title = config('titles.' . Route::currentRouteName());
+            $view->with(compact('title'));
+        });
+
         View::share('pages', Page::all());
 		View::share('shop', Shop::firstOrFail());
 		View::composer(['layouts.app', 'products.show'], function ($view) {

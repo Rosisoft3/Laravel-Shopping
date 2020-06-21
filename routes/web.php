@@ -65,3 +65,10 @@ Route::middleware('auth')->group(function () {
 
 
 Route::get('page/{page:slug}', 'HomeController@page')->name('page');
+Route::view('admin', 'back.layout');
+
+// Administration
+Route::prefix('admin')->middleware('admin')->namespace('Back')->group(function () {
+    Route::name('admin')->get('/', 'AdminController@index');
+    Route::name('read')->put('read/{type}', 'AdminController@read');
+});
