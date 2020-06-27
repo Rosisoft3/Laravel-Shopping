@@ -15,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 
 // Administration
 Route::prefix('admin')->middleware('admin')->namespace('Back')->group(function () {
+    
+    Route::resource('pays', 'CountryController')->except('show')->parameters([
+        'pays' => 'pays'
+      ]);
+      Route::name('pays.destroy.alert')->get('pays/{pays}', 'CountryController@alert');
+    
     Route::name('admin')->get('/', 'AdminController@index');
     Route::name('read')->put('read/{type}', 'AdminController@read');
     

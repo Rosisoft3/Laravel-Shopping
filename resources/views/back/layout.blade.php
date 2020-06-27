@@ -14,6 +14,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.4/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+  <!-- Theme style -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.4/css/adminlte.min.css">
+@yield('css')
+<!-- Google Font: Source Sans Pro -->
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -49,27 +56,38 @@
           </x-menu-item>
 
           <li class="nav-item has-treeview {{ menuOpen(
-                'shop.edit',
-                'shop.update'
-            ) }}">
-            <a href="#" class="nav-link {{ currentRouteActive(
-                'shop.edit',
-                'shop.update'
-              ) }}">
-              <i class="nav-icon fas fa-cogs"></i>
-              <p>
-                Administration
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-
-              <x-menu-item :href="route('shop.edit')" :sub=true :active="currentRouteActive('shop.edit', 'shop.update')">
-                Boutique
-              </x-menu-item>
-
-            </ul>
-          </li>
+            'shop.edit',
+            'shop.update',
+            'pays.index',
+            'pays.edit',
+            'pays.create'
+        ) }}">
+        <a href="#" class="nav-link {{ currentRouteActive(
+            'shop.edit',
+            'shop.update',
+            'pays.index',
+            'pays.edit',
+            'pays.create'
+          ) }}">
+          <i class="nav-icon fas fa-cogs"></i>
+          <p>
+            Administration
+            <i class="right fas fa-angle-left"></i>
+          </p>
+        </a>
+        <ul class="nav nav-treeview">
+          <x-menu-item :href="route('shop.edit')" :sub=true :active="currentRouteActive('shop.edit', 'shop.update')">
+            Boutique
+          </x-menu-item>
+          <x-menu-item :href="route('pays.index')" :sub=true :active="currentRouteActive(
+              'pays.index', 
+              'pays.edit',
+              'pays.create'
+            )">
+            Pays
+          </x-menu-item>
+        </ul>
+      </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -118,5 +136,10 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.4/js/adminlte.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.4/js/adminlte.min.js"></script>
+@yield('js')
+
+
 </body>
 </html>

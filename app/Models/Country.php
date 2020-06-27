@@ -10,6 +10,7 @@ class Country extends Model
         'name', 'tax',
     ];
     public $timestamps = false;
+  
 
 
     public function ranges()

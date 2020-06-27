@@ -9,4 +9,6 @@ return [
     'addressupdated' => "L'adresse a bien été modifiée.",
     'addressdeleted' => "L'adresse a bien été supprimée.",
     'shopupdated' => 'La boutique a bien été mise à jour.',
+    'countryupdated' => 'Le pays a bien été mis à jour.',
+    'countrycreated' => 'Le pays a bien été créé.', 
 ];
