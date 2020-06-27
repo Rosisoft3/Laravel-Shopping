@@ -11,4 +11,7 @@ return [
     'shopupdated' => 'La boutique a bien été mise à jour.',
     'countryupdated' => 'Le pays a bien été mis à jour.',
     'countrycreated' => 'Le pays a bien été créé.', 
+    'rangesupdated' => 'Les plages ont bien été mises à jour. Il est conseillé de mettre éventuellement à jour les tarifs d\'expédition.',
+    'colissimosupdated' => 'Les tarifs Colissimo ont bien été mis à jour.',
+
 ];
