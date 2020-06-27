@@ -1,4 +1,5 @@
 <?php
+
 return [
     'newletter' => "Je désire recevoir votre lettre d'information",
     'accept' => "J'accepte les termes et conditions de la politique de confidentialité.",

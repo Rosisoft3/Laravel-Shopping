@@ -13,6 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Administration
+Route::prefix('admin')->middleware('admin')->namespace('Back')->group(function () {
+    Route::name('admin')->get('/', 'AdminController@index');
+    Route::name('read')->put('read/{type}', 'AdminController@read');
+    
+    Route::name('shop.edit')->get('boutique', 'ShopController@edit');
+    Route::name('shop.update')->put('boutique', 'ShopController@update');
+});
+
 // Accueil boutique et panier
 Route::get('/', 'HomeController@index')->name('home');
 Route::name('produits.show')->get('produits/{produit}', 'ProductController');
@@ -37,38 +46,29 @@ Route::prefix('passe')->group(function () {
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('page/{page:slug}', 'HomeController@page')->name('page');
 
 // Utilisateur authentifié
 Route::middleware('auth')->group(function () {
-     // Gestion du compte
-     Route::prefix('compte')->group(function () {
-        Route::name('invoice')->get('commandes/{order}/invoice', 'InvoiceController');
-        Route::resource('commandes', 'OrdersController')->only(['index', 'show'])->parameters(['commandes' => 'order']);
-        Route::resource('adresses', 'AddressController')->except('show');
-        Route::name('rgpd.pdf')->get('rgpd/pdf', 'IdentiteController@pdf');
-        Route::name('rgpd')->get('rgpd', 'IdentiteController@rgpd');
+    // Gestion du compte
+    Route::prefix('compte')->group(function () {
+        Route::name('account')->get('/', 'AccountController');
         Route::name('identite.edit')->get('identite', 'IdentiteController@edit');
         Route::name('identite.update')->put('identite', 'IdentiteController@update');
-        Route::name('account')->get('/', 'AccountController');
+        Route::name('rgpd')->get('rgpd', 'IdentiteController@rgpd');
+        Route::name('rgpd.pdf')->get('rgpd/pdf', 'IdentiteController@pdf');
+        Route::resource('adresses', 'AddressController')->except('show');
+        Route::resource('commandes', 'OrdersController')->only(['index', 'show'])->parameters(['commandes' => 'order']);
+        Route::name('invoice')->get('commandes/{order}/invoice', 'InvoiceController');
     });
-  // Commandes
-  Route::prefix('commandes')->group(function () {
-      Route::name('commandes.details')->post('details', 'DetailsController');
-      Route::name('commandes.confirmation')->get('confirmation/{order}', 'OrdersController@confirmation');
-      Route::name('commandes.payment')->post('paiement/{order}', 'PaymentController');
-      Route::resource('/', 'OrderController')->names([
-          'create' => 'commandes.create',
-          'store' => 'commandes.store',
-      ])->only(['create', 'store']);
-  });
-});
-
-
-Route::get('page/{page:slug}', 'HomeController@page')->name('page');
-Route::view('admin', 'back.layout');
-
-// Administration
-Route::prefix('admin')->middleware('admin')->namespace('Back')->group(function () {
-    Route::name('admin')->get('/', 'AdminController@index');
-    Route::name('read')->put('read/{type}', 'AdminController@read');
+    // Commandes
+    Route::prefix('commandes')->group(function () {
+        Route::name('commandes.details')->post('details', 'DetailsController');
+        Route::name('commandes.confirmation')->get('confirmation/{order}', 'OrdersController@confirmation');
+        Route::resource('/', 'OrderController')->names([
+            'create' => 'commandes.create',
+            'store' => 'commandes.store',
+        ])->only(['create', 'store']);
+        Route::name('commandes.payment')->post('paiement/{order}', 'PaymentController');
+    });
 });
