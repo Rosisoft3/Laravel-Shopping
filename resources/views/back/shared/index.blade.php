@@ -7,6 +7,9 @@
   @if(Route::currentRouteName() === 'pays.index')
     <a class="btn btn-primary" href="{{ route('pays.create') }}" role="button">Créer un nouveau pays</a>
   @endif
+  @if(Route::currentRouteName() === 'etats.index')
+  <a class="btn btn-primary" href="{{ route('etats.create') }}" role="button">Créer un nouvel état</a>
+@endif
 @endsection
 @section('js') 
   <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script> 

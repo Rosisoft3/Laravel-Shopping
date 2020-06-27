@@ -24,6 +24,8 @@ Route::prefix('admin')->middleware('admin')->namespace('Back')->group(function (
       Route::name('plages.update')->put('plages', 'RangeController@update');
       Route::name('colissimos.edit')->get('colissimos/modification', 'ColissimoController@edit');
       Route::name('colissimos.update')->put('colissimos', 'ColissimoController@update');
+      Route::resource('etats', 'StateController')->except('show');
+      Route::name('etats.destroy.alert')->get('etats/{etat}', 'StateController@alert');
     
     Route::name('admin')->get('/', 'AdminController@index');
     Route::name('read')->put('read/{type}', 'AdminController@read');

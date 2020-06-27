@@ -13,5 +13,7 @@ return [
     'countrycreated' => 'Le pays a bien été créé.', 
     'rangesupdated' => 'Les plages ont bien été mises à jour. Il est conseillé de mettre éventuellement à jour les tarifs d\'expédition.',
     'colissimosupdated' => 'Les tarifs Colissimo ont bien été mis à jour.',
+    'stateupdated' => 'L\'état a bien été mis à jour.',
+    'statecreated' => 'L\'état a bien été créé.',
 
 ];

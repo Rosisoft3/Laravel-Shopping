@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Back;
 use App\Http\Controllers\Controller;
 use App\Models\State;
 use Illuminate\Http\Request;
+use App\DataTables\StatesDataTable;
+use App\Http\Requests\StateRequest;
 
 class StateController extends Controller
 {
@@ -13,9 +15,9 @@ class StateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(StatesDataTable $dataTable)
     {
-        //
+        return $dataTable->render('back.shared.index');
     }
 
     /**
@@ -25,7 +27,7 @@ class StateController extends Controller
      */
     public function create()
     {
-        //
+        return view('back.states.form');
     }
 
     /**
@@ -34,9 +36,10 @@ class StateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(StateRequest $request)
+    {      
+        State::create($request->all());
+        return back()->with('alert', config('messages.statecreated'));
     }
 
     /**
@@ -56,10 +59,10 @@ class StateController extends Controller
      * @param  \App\Models\State  $state
      * @return \Illuminate\Http\Response
      */
-    public function edit(State $state)
-    {
-        //
-    }
+    public function edit(State $etat)
+{
+    return view('back.states.form', ['state' => $etat]);
+}
 
     /**
      * Update the specified resource in storage.
@@ -68,9 +71,10 @@ class StateController extends Controller
      * @param  \App\Models\State  $state
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, State $state)
+    public function update(StateRequest $request, State $etat)
     {
-        //
+        $etat->update($request->all());
+        return back()->with('alert', config('messages.stateupdated'));
     }
 
     /**
@@ -79,8 +83,13 @@ class StateController extends Controller
      * @param  \App\Models\State  $state
      * @return \Illuminate\Http\Response
      */
-    public function destroy(State $state)
+    public function destroy(State $etat)
     {
-        //
+        $etat->delete();
+        return redirect(route('etats.index'));
+    }
+    public function alert(State $etat)
+    {
+        return view('back.states.destroy', ['state' => $etat]);
     }
 }
