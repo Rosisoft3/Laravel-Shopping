@@ -50,38 +50,46 @@
           </x-menu-item>
 
           <li class="nav-item has-treeview {{ menuOpen(
-                'shop.edit',
-                'shop.update',
-                'pays.index',
-                'pays.edit',
-                'pays.create',
-                'plages.edit',
-                'colissimos.edit',
-                'etats.index', 
-                'etats.edit', 
-                'etats.create', 
-                'etats.destroy.alert'
-            ) }}">
-            <a href="#" class="nav-link {{ currentRouteActive(
-                'shop.edit',
-                'shop.update',
-                'pays.index',
-                'pays.edit',
-                'pays.create',
-                'plages.edit',
-                'colissimos.edit',
-                'etats.index', 
-                'etats.edit', 
-                'etats.create', 
-                'etats.destroy.alert'
-              ) }}">
-              <i class="nav-icon fas fa-cogs"></i>
-              <p>
-                Administration
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
+            'shop.edit',
+            'shop.update',
+            'pays.index',
+            'pays.edit',
+            'pays.create',
+            'plages.edit',
+            'colissimos.edit',
+            'etats.index', 
+            'etats.edit', 
+            'etats.create', 
+            'etats.destroy.alert',
+            'pages.index',
+            'pages.edit',
+            'pages.create',
+            'pages.destroy.alert'
+        ) }}">
+        <a href="#" class="nav-link {{ currentRouteActive(
+            'shop.edit',
+            'shop.update',
+            'pays.index',
+            'pays.edit',
+            'pays.create',
+            'plages.edit',
+            'colissimos.edit',
+            'etats.index', 
+            'etats.edit', 
+            'etats.create', 
+            'etats.destroy.alert',
+            'pages.index',
+            'pages.edit',
+            'pages.create',
+            'pages.destroy.alert'
+          ) }}">
+          <i class="nav-icon fas fa-cogs"></i>
+          <p>
+            Administration
+            <i class="right fas fa-angle-left"></i>
+          </p>
+        </a>
+        <ul class="nav nav-treeview">
 
               <x-menu-item :href="route('shop.edit')" :sub=true :active="currentRouteActive('shop.edit', 'shop.update')">
                 Boutique
@@ -97,12 +105,20 @@
               </x-menu-item>
 
               <x-menu-item :href="route('pays.index')" :sub=true :active="currentRouteActive(
-                  'pays.index', 
-                  'pays.edit',
-                  'pays.create'
-                )">
-                Pays
-              </x-menu-item>
+                'pays.index', 
+                'pays.edit',
+                'pays.create'
+              )">
+              Pays
+            </x-menu-item>
+            <x-menu-item :href="route('pages.index')" :sub=true :active="currentRouteActive(
+                'pages.index',
+                'pages.edit',
+                'pages.create',
+                'pages.destroy.alert'
+              )">
+              Pages
+            </x-menu-item>
 
               <li class="nav-item has-treeview {{ menuOpen('plages.edit', 'colissimos.edit') }}">
                 <a href="#" class="nav-link {{ currentRouteActive('plages.edit', 'colissimos.edit') }}">

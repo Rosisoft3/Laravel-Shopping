@@ -26,6 +26,8 @@ Route::prefix('admin')->middleware('admin')->namespace('Back')->group(function (
       Route::name('colissimos.update')->put('colissimos', 'ColissimoController@update');
       Route::resource('etats', 'StateController')->except('show');
       Route::name('etats.destroy.alert')->get('etats/{etat}', 'StateController@alert');
+      Route::resource('pages', 'PageController')->except('show');
+      Route::name('pages.destroy.alert')->get('pages/{page}', 'PageController@alert');
     
     Route::name('admin')->get('/', 'AdminController@index');
     Route::name('read')->put('read/{type}', 'AdminController@read');

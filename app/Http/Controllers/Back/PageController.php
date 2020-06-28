@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Back;
 use App\Http\Controllers\Controller;
 use App\Models\Page;
 use Illuminate\Http\Request;
+use App\DataTables\PagesDataTable;
+use App\Http\Requests\PageRequest;
+
 
 class PageController extends Controller
 {
@@ -13,9 +16,9 @@ class PageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(PagesDataTable $dataTable)
     {
-        //
+        return $dataTable->render('back.shared.index');
     }
 
     /**
@@ -25,7 +28,7 @@ class PageController extends Controller
      */
     public function create()
     {
-        //
+        return view('back.pages.form');
     }
 
     /**
@@ -34,10 +37,11 @@ class PageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
+    public function store(PageRequest $request)
+{
+    Page::create($request->all());
+    return back()->with('alert', config('messages.pagecreated'));
+}
 
     /**
      * Display the specified resource.
@@ -58,9 +62,8 @@ class PageController extends Controller
      */
     public function edit(Page $page)
     {
-        //
+        return view('back.pages.form', compact('page'));
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -68,10 +71,11 @@ class PageController extends Controller
      * @param  \App\Models\Page  $page
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Page $page)
-    {
-        //
-    }
+    public function update(PageRequest $request, Page $page)
+{
+    $page->update($request->all());
+    return back()->with('alert', config('messages.pageupdated'));
+}
 
     /**
      * Remove the specified resource from storage.
@@ -81,6 +85,11 @@ class PageController extends Controller
      */
     public function destroy(Page $page)
     {
-        //
+        $page->delete();
+        return redirect(route('pages.index'));
+    }
+    public function alert(Page $page)
+    {
+        return view('back.pages.destroy', compact('page'));
     }
 }
