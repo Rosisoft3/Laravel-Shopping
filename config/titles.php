@@ -41,4 +41,12 @@ return [
         'edit' => 'Modification d\'une page',
         'create' => 'Création d\'une page',
     ],
+
+    'produits' => [
+        'index' => 'Catalogue',
+        'create' => "Création d'un produit",
+        'destroy' => [
+          'alert' => "Suppression d'un produit",
+        ],
+    ],
 ];

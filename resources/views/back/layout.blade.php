@@ -140,6 +140,25 @@
 
             </ul>
           </li>
+
+          <li class="nav-item has-treeview {{ menuOpen('produits.index', 'produits.edit', 'produits.create' , 'produits.destroy.alert') }}">
+            <a href="#" class="nav-link {{ currentRouteActive('produits.index', 'produits.edit', 'produits.create' , 'produits.destroy.alert') }}">
+              <i class="nav-icon fas fa-store"></i>
+              <p>
+                Catalogue
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <x-menu-item :href="route('produits.index')" :sub=true :active="currentRouteActive('produits.index', 'produits.edit' , 'produits.destroy.alert')">
+                Produits
+              </x-menu-item>
+              <x-menu-item :href="route('produits.create')" :sub=true :active="currentRouteActive('produits.create')">
+                Nouveau produit
+              </x-menu-item>
+            </ul>
+          </li>
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
