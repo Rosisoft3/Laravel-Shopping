@@ -60,4 +60,9 @@ return [
         'index' => 'Clients',
         'show' => 'Fiche client',
     ],
+
+    'orders' => [
+        'index' => 'Commandes',
+        'show' => 'Gestion d\'une commande',
+    ],
 ];

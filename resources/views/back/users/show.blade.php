@@ -44,7 +44,7 @@
                 <td>{{ $order->total }} €</td>
                 <td>{{ $order->payment_text }}</td>
                 <td><span class="badge badge-{{ config('colors.' . $order->state->color) }}">{{ $order->state->name }}</span></td>
-                <td style="text-align: center"><a href="#" class="btn btn-primary btn-sm">Voir</a></td>
+                <td style="text-align: center"><a href="{{ route('orders.show', $order->id) }}" class="btn btn-primary btn-sm">Voir</a></td>
               </tr>
             @endforeach
           </tbody>
