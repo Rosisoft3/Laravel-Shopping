@@ -140,6 +140,35 @@
 
             </ul>
           </li>
+          
+          <li class="nav-item has-treeview {{ menuOpen(
+            'clients.index', 
+            'clients.show', 
+            'back.adresses.index', 
+            'back.adresses.show' 
+          )}}">
+          <a href="#" class="nav-link {{ currentRouteActive(
+              'clients.index', 
+              'clients.show', 
+              'back.adresses.index',
+              'back.adresses.show'
+            )}}">
+            <i class="nav-icon fas fa-user-alt"></i>
+            <p>
+              Clients
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <x-menu-item :href="route('clients.index')" :sub=true :active="currentRouteActive('clients.index', 'clients.show')">
+              Clients
+            </x-menu-item>
+            <x-menu-item :href="route('back.adresses.index')" :sub=true :active="currentRouteActive('back.adresses.index', 'back.adresses.show')">
+              Adresses
+            </x-menu-item>
+          </ul>
+        </li>
+        
 
           <li class="nav-item has-treeview {{ menuOpen('produits.index', 'produits.edit', 'produits.create' , 'produits.destroy.alert') }}">
             <a href="#" class="nav-link {{ currentRouteActive('produits.index', 'produits.edit', 'produits.create' , 'produits.destroy.alert') }}">

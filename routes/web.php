@@ -30,6 +30,11 @@ Route::prefix('admin')->middleware('admin')->namespace('Back')->group(function (
       Route::name('pages.destroy.alert')->get('pages/{page}', 'PageController@alert');
       Route::resource('produits', 'ProductController')->except('show');
       Route::name('produits.destroy.alert')->get('produits/{produit}', 'ProductController@alert');
+      Route::resource('clients', 'UserController')->only(['index', 'show']);
+      Route::resource('adresses', 'AddressController')->names([
+        'index' => 'back.adresses.index',
+        'show' => 'back.adresses.show',
+    ])->only(['index', 'show']);
     
     Route::name('admin')->get('/', 'AdminController@index');
     Route::name('read')->put('read/{type}', 'AdminController@read');

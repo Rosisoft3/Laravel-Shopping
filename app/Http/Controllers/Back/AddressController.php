@@ -3,18 +3,18 @@
 namespace App\Http\Controllers\Back;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\Address;
 use Illuminate\Http\Request;
-use App\DataTables\UsersDataTable;
+use App\DataTables\AddressesDataTable;
 
-class UserController extends Controller
+class AddressController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(UsersDataTable $dataTable)
+    public function index(AddressesDataTable $dataTable)
     {
         return $dataTable->render('back.shared.index');
     }
@@ -43,22 +43,22 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Address  $address
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $user = User::with('orders', 'orders.state', 'addresses')->findOrFail($id);
-        return view('back.users.show', compact('user'));
+        $address = Address::findOrFail($id);
+        return view('back.addresses.show', compact('address'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Address  $address
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(Address $address)
     {
         //
     }
@@ -67,10 +67,10 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Address  $address
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, Address $address)
     {
         //
     }
@@ -78,10 +78,10 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Address  $address
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Address $address)
     {
         //
     }

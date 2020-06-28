@@ -11,6 +11,12 @@ return [
     */
 
     'admin' => 'Tableau de bord',
+    'back' => [
+        'adresses' => [
+            'index' => 'Gestion des adresses',
+            'show' => 'Consultation d\'une adresse',
+        ],
+    ],
 
     'shop' => [
         'edit' => 'Gestion de la boutique',
@@ -48,5 +54,10 @@ return [
         'destroy' => [
           'alert' => "Suppression d'un produit",
         ],
+    ],
+
+    'clients' => [
+        'index' => 'Clients',
+        'show' => 'Fiche client',
     ],
 ];
