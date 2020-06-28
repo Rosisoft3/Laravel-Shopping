@@ -49,133 +49,40 @@
             Tableau de bord
           </x-menu-item>
 
-          <li class="nav-item has-treeview {{ menuOpen(
-            'shop.edit',
-            'shop.update',
-            'pays.index',
-            'pays.edit',
-            'pays.create',
-            'plages.edit',
-            'colissimos.edit',
-            'etats.index', 
-            'etats.edit', 
-            'etats.create', 
-            'etats.destroy.alert',
-            'pages.index',
-            'pages.edit',
-            'pages.create',
-            'pages.destroy.alert'
-        ) }}">
-        <a href="#" class="nav-link {{ currentRouteActive(
-            'shop.edit',
-            'shop.update',
-            'pays.index',
-            'pays.edit',
-            'pays.create',
-            'plages.edit',
-            'colissimos.edit',
-            'etats.index', 
-            'etats.edit', 
-            'etats.create', 
-            'etats.destroy.alert',
-            'pages.index',
-            'pages.edit',
-            'pages.create',
-            'pages.destroy.alert'
-          ) }}">
-          <i class="nav-icon fas fa-cogs"></i>
-          <p>
-            Administration
-            <i class="right fas fa-angle-left"></i>
-          </p>
-        </a>
-        <ul class="nav nav-treeview">
-
-              <x-menu-item :href="route('shop.edit')" :sub=true :active="currentRouteActive('shop.edit', 'shop.update')">
-                Boutique
-              </x-menu-item>
-
-              <x-menu-item :href="route('etats.index')" :sub=true :active="currentRouteActive(
-                  'etats.index', 
-                  'etats.edit', 
-                  'etats.create', 
-                  'etats.destroy.alert'
-                )">
-                Etats de commande
-              </x-menu-item>
-
-              <x-menu-item :href="route('pays.index')" :sub=true :active="currentRouteActive(
-                'pays.index', 
-                'pays.edit',
-                'pays.create'
-              )">
-              Pays
-            </x-menu-item>
-            <x-menu-item :href="route('pages.index')" :sub=true :active="currentRouteActive(
-                'pages.index',
-                'pages.edit',
-                'pages.create',
-                'pages.destroy.alert'
-              )">
-              Pages
-            </x-menu-item>
-
-              <li class="nav-item has-treeview {{ menuOpen('plages.edit', 'colissimos.edit') }}">
-                <a href="#" class="nav-link {{ currentRouteActive('plages.edit', 'colissimos.edit') }}">
-                  <i class="nav-icon far fa-circle"></i>
-                  <p>
-                    Expéditions
-                    <i class="right fas fa-angle-left"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <x-menu-item :href="route('plages.edit')" :sub=false :subsub=true :active="currentRouteActive('plages.edit')">
-                    Plages
-                  </x-menu-item>
-                  <x-menu-item :href="route('colissimos.edit')" :sub=false :subsub=true :active="currentRouteActive('colissimos.edit')">
-                    Tarifs
-                  </x-menu-item>
-                </ul>
-              </li>
-
-            </ul>
-          </li>
-
           <x-menu-item 
-  :href="route('orders.index')" 
-  icon="shopping-basket"
-  :active="currentRouteActive('orders.index', 'orders.show')">
-  Commandes
-</x-menu-item>
-          
+            :href="route('orders.index')" 
+            icon="shopping-basket"
+            :active="currentRouteActive('orders.index', 'orders.show')">
+            Commandes
+          </x-menu-item>
+
           <li class="nav-item has-treeview {{ menuOpen(
-            'clients.index', 
-            'clients.show', 
-            'back.adresses.index', 
-            'back.adresses.show' 
-          )}}">
-          <a href="#" class="nav-link {{ currentRouteActive(
               'clients.index', 
               'clients.show', 
-              'back.adresses.index',
-              'back.adresses.show'
+              'back.adresses.index', 
+              'back.adresses.show' 
             )}}">
-            <i class="nav-icon fas fa-user-alt"></i>
-            <p>
-              Clients
-              <i class="right fas fa-angle-left"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <x-menu-item :href="route('clients.index')" :sub=true :active="currentRouteActive('clients.index', 'clients.show')">
-              Clients
-            </x-menu-item>
-            <x-menu-item :href="route('back.adresses.index')" :sub=true :active="currentRouteActive('back.adresses.index', 'back.adresses.show')">
-              Adresses
-            </x-menu-item>
-          </ul>
-        </li>
-        
+            <a href="#" class="nav-link {{ currentRouteActive(
+                'clients.index', 
+                'clients.show', 
+                'back.adresses.index',
+                'back.adresses.show'
+              )}}">
+              <i class="nav-icon fas fa-user-alt"></i>
+              <p>
+                Clients
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <x-menu-item :href="route('clients.index')" :sub=true :active="currentRouteActive('clients.index', 'clients.show')">
+                Clients
+              </x-menu-item>
+              <x-menu-item :href="route('back.adresses.index')" :sub=true :active="currentRouteActive('back.adresses.index', 'back.adresses.show')">
+                Adresses
+              </x-menu-item>
+            </ul>
+          </li>
 
           <li class="nav-item has-treeview {{ menuOpen('produits.index', 'produits.edit', 'produits.create' , 'produits.destroy.alert') }}">
             <a href="#" class="nav-link {{ currentRouteActive('produits.index', 'produits.edit', 'produits.create' , 'produits.destroy.alert') }}">
@@ -195,6 +102,114 @@
             </ul>
           </li>
 
+          <li class="nav-item has-treeview {{ menuOpen(
+                'shop.edit',
+                'shop.update',
+                'pays.index',
+                'pays.edit',
+                'pays.create',
+                'plages.edit',
+                'colissimos.edit',
+                'etats.index', 
+                'etats.edit', 
+                'etats.create', 
+                'etats.destroy.alert',
+                'pages.index',
+                'pages.edit',
+                'pages.create',
+                'pages.destroy.alert',
+                'maintenance.edit'
+            ) }}">
+            <a href="#" class="nav-link {{ currentRouteActive(
+                'shop.edit',
+                'shop.update',
+                'pays.index',
+                'pays.edit',
+                'pays.create',
+                'plages.edit',
+                'colissimos.edit',
+                'etats.index', 
+                'etats.edit', 
+                'etats.create', 
+                'etats.destroy.alert',
+                'pages.index',
+                'pages.edit',
+                'pages.create',
+                'pages.destroy.alert',
+                'maintenance.edit'
+              ) }}">
+              <i class="nav-icon fas fa-cogs"></i>
+              <p>
+                Administration
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+
+              <x-menu-item :href="route('shop.edit')" :sub=true :active="currentRouteActive('shop.edit', 'shop.update')">
+                Boutique
+              </x-menu-item>
+
+              <x-menu-item :href="route('etats.index')" :sub=true :active="currentRouteActive(
+                  'etats.index', 
+                  'etats.edit', 
+                  'etats.create', 
+                  'etats.destroy.alert'
+                )">
+                Etats de commande
+              </x-menu-item>
+
+              <x-menu-item :href="route('pays.index')" :sub=true :active="currentRouteActive(
+                  'pays.index', 
+                  'pays.edit',
+                  'pays.create'
+                )">
+                Pays
+              </x-menu-item>
+
+              <x-menu-item :href="route('pages.index')" :sub=true :active="currentRouteActive(
+                  'pages.index',
+                  'pages.edit',
+                  'pages.create',
+                  'pages.destroy.alert'
+                )">
+                Pages
+              </x-menu-item>
+
+              <li class="nav-item has-treeview {{ menuOpen('plages.edit', 'colissimos.edit') }}">
+                <a href="#" class="nav-link {{ currentRouteActive('plages.edit', 'colissimos.edit') }}">
+                  <i class="nav-icon far fa-circle"></i>
+                  <p>
+                    Expéditions
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <x-menu-item :href="route('plages.edit')" :sub=false :subsub=true :active="currentRouteActive('plages.edit')">
+                    Plages
+                  </x-menu-item>
+                  <x-menu-item :href="route('colissimos.edit')" :sub=false :subsub=true :active="currentRouteActive('colissimos.edit')">
+                    Tarifs
+                  </x-menu-item>
+                </ul>
+              </li>
+
+              <x-menu-item :href="route('maintenance.edit')" :sub=true :active="currentRouteActive('maintenance.edit')">
+                Maintenance
+              </x-menu-item>
+
+
+
+            </ul>
+
+            <x-menu-item 
+            :href="route('statistics', now()->year)" 
+            icon="chart-bar"
+            :active="currentRouteActive('statistics')">
+            Statistiques
+          </x-menu-item>
+
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

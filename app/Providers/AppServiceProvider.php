@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Route;
 use Cart;
+use DB;
+
+use ConsoleTVs\Charts\Registrar as Charts;
+use App\Charts\{OrdersChart,UsersChart};
 
 use App\Models\{ Shop, Page };
 
@@ -28,9 +32,15 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(Charts $charts)
     {
         Schema::defaultStringLength(191);
+        DB::statement("SET lc_time_names = 'fr_FR'");
+        $charts->register([
+            OrdersChart::class,
+            UsersChart::class,
+
+        ]);
         
         View::composer('back.layout', function ($view) {
             $title = config('titles.' . Route::currentRouteName());
@@ -50,7 +60,6 @@ class AppServiceProvider extends ServiceProvider
             'edit' => 'modification',
             'create' => 'creation',
         ]);
-
        
-    }
+    } 
 }

@@ -20,5 +20,8 @@ return [
     'productcreated' => 'Le produit a bien été créé.',
     'productupdated' => 'Le produit a bien été modifié.',
     'productdeleted' => 'Le produit a bien été supprimé.',
+    'maintenance' => 'La boutique est en mode maintenance.',
+    'maintenanceupdated' => 'Le mode maintenance a bien été mis à jour.',
+    'cacheupdated' => 'Le cache a bien été mis à jour.',
 
 ];
