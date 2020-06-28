@@ -22,7 +22,7 @@
       <div class="col-sm-12">
         <div class="card">
         
-            <form method="POST" action="{{ route('colissimos.update') }}">
+          <form method="POST" action="{{ route('colissimos.update') }}">
             <div class="card-body">
               @method('PUT')
               @csrf

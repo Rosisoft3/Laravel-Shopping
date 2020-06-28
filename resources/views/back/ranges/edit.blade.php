@@ -18,7 +18,7 @@
       <div class="col-sm-12">
         <div class="card">
         
-            <form method="POST" action="{{ route('plages.update') }}">
+          <form method="POST" action="{{ route('plages.update') }}">
             <div class="card-body">
               @method('PUT')
               @csrf

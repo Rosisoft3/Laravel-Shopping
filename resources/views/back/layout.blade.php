@@ -12,15 +12,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.4/css/adminlte.min.css">
+  @yield('css')
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-
-  <!-- Theme style -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.4/css/adminlte.min.css">
-@yield('css')
-<!-- Google Font: Source Sans Pro -->
-<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -56,75 +50,80 @@
           </x-menu-item>
 
           <li class="nav-item has-treeview {{ menuOpen(
-            'shop.edit',
-            'shop.update',
-            'pays.index',
-            'pays.edit',
-            'pays.create',
-            'plages.edit',
-            'colissimos.edit',
-            'etats.index', 
-            'etats.edit', 
-            'etats.create', 
-            'etats.destroy.alert'
-        ) }}">
-        <a href="#" class="nav-link {{ currentRouteActive(
-            'shop.edit',
-            'shop.update',
-            'pays.index',
-            'pays.edit',
-            'pays.create',
-            'plages.edit',
-            'colissimos.edit',
-            'etats.index', 
-            'etats.edit', 
-            'etats.create', 
-            'etats.destroy.alert'
-          ) }}">
-          <i class="nav-icon fas fa-cogs"></i>
-          <p>
-            Administration
-            <i class="right fas fa-angle-left"></i>
-          </p>
-        </a>
-        <ul class="nav nav-treeview">
-          <x-menu-item :href="route('shop.edit')" :sub=true :active="currentRouteActive('shop.edit', 'shop.update')">
-            Boutique
-          </x-menu-item>
-          <x-menu-item :href="route('etats.index')" :sub=true :active="currentRouteActive(
-              'etats.index', 
-              'etats.edit', 
-              'etats.create', 
-              'etats.destroy.alert'
-            )">
-            Etats de commande
-          </x-menu-item>
-          <x-menu-item :href="route('pays.index')" :sub=true :active="currentRouteActive(
-              'pays.index', 
-              'pays.edit',
-              'pays.create'
-            )">
-            Pays
-          </x-menu-item>
-          <li class="nav-item has-treeview {{ menuOpen('plages.edit', 'colissimos.edit') }}">
-            <a href="#" class="nav-link {{ currentRouteActive('plages.edit', 'colissimos.edit') }}">
-              <i class="nav-icon far fa-circle"></i>
+                'shop.edit',
+                'shop.update',
+                'pays.index',
+                'pays.edit',
+                'pays.create',
+                'plages.edit',
+                'colissimos.edit',
+                'etats.index', 
+                'etats.edit', 
+                'etats.create', 
+                'etats.destroy.alert'
+            ) }}">
+            <a href="#" class="nav-link {{ currentRouteActive(
+                'shop.edit',
+                'shop.update',
+                'pays.index',
+                'pays.edit',
+                'pays.create',
+                'plages.edit',
+                'colissimos.edit',
+                'etats.index', 
+                'etats.edit', 
+                'etats.create', 
+                'etats.destroy.alert'
+              ) }}">
+              <i class="nav-icon fas fa-cogs"></i>
               <p>
-                Expéditions
+                Administration
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <x-menu-item :href="route('plages.edit')" :sub=false :subsub=true :active="currentRouteActive('plages.edit')">
-                Plages
+
+              <x-menu-item :href="route('shop.edit')" :sub=true :active="currentRouteActive('shop.edit', 'shop.update')">
+                Boutique
               </x-menu-item>
-              <x-menu-item :href="route('colissimos.edit')" :sub=false :subsub=true :active="currentRouteActive('colissimos.edit')">
-                Tarifs
+
+              <x-menu-item :href="route('etats.index')" :sub=true :active="currentRouteActive(
+                  'etats.index', 
+                  'etats.edit', 
+                  'etats.create', 
+                  'etats.destroy.alert'
+                )">
+                Etats de commande
               </x-menu-item>
+
+              <x-menu-item :href="route('pays.index')" :sub=true :active="currentRouteActive(
+                  'pays.index', 
+                  'pays.edit',
+                  'pays.create'
+                )">
+                Pays
+              </x-menu-item>
+
+              <li class="nav-item has-treeview {{ menuOpen('plages.edit', 'colissimos.edit') }}">
+                <a href="#" class="nav-link {{ currentRouteActive('plages.edit', 'colissimos.edit') }}">
+                  <i class="nav-icon far fa-circle"></i>
+                  <p>
+                    Expéditions
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <x-menu-item :href="route('plages.edit')" :sub=false :subsub=true :active="currentRouteActive('plages.edit')">
+                    Plages
+                  </x-menu-item>
+                  <x-menu-item :href="route('colissimos.edit')" :sub=false :subsub=true :active="currentRouteActive('colissimos.edit')">
+                    Tarifs
+                  </x-menu-item>
+                </ul>
+              </li>
+
             </ul>
           </li>
-        </ul>
-      </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -173,10 +172,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.4/js/adminlte.min.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.4/js/adminlte.min.js"></script>
 @yield('js')
-
-
 </body>
 </html>
