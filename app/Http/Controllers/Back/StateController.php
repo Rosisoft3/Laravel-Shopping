@@ -13,6 +13,7 @@ class StateController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  App\DataTables\StatesDataTable  $dataTable
      * @return \Illuminate\Http\Response
      */
     public function index(StatesDataTable $dataTable)
@@ -33,12 +34,13 @@ class StateController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\StateRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StateRequest $request)
     {      
         State::create($request->all());
+
         return back()->with('alert', config('messages.statecreated'));
     }
 
@@ -56,38 +58,41 @@ class StateController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\State  $state
+     * @param  \App\Models\State $state
      * @return \Illuminate\Http\Response
      */
     public function edit(State $etat)
-{
-    return view('back.states.form', ['state' => $etat]);
-}
-
+    {
+        return view('back.states.form', ['state' => $etat]);
+    }
+    
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\State  $state
+     * @param  \Illuminate\Http\StateRequest  $request
+     * @param  \App\Models\Order  $commande
      * @return \Illuminate\Http\Response
      */
     public function update(StateRequest $request, State $etat)
     {
         $etat->update($request->all());
+
         return back()->with('alert', config('messages.stateupdated'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\State  $state
+     * @param  \App\Models\State $etat
      * @return \Illuminate\Http\Response
      */
     public function destroy(State $etat)
     {
         $etat->delete();
+
         return redirect(route('etats.index'));
     }
+
     public function alert(State $etat)
     {
         return view('back.states.destroy', ['state' => $etat]);

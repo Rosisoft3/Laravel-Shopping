@@ -3,9 +3,25 @@
 //Materialize
 @import "materialize-css/materialize.scss";
 
-main { padding-top: 40px; };
-body { background-color: #f1f1ff; }
-.page-footer { margin-top: 100px; }
+main { 
+  padding-top: 40px; 
+}
+
+body {
+  background-color: #f1f1ff;
+}
+
+.btn-large {
+  margin-bottom: 30px;
+}
+
+#account a {
+  width: 100%;
+}
+
+.page-footer {
+  margin-top: 100px;
+}
 
 .cards-container {
   .card {
@@ -59,11 +75,4 @@ body { background-color: #f1f1ff; }
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
-}
-
-.btn-large {
-  margin-bottom: 30px;
-}
-#account a {
-  width: 100%;
 }

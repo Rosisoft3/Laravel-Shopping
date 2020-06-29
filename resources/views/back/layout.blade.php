@@ -102,6 +102,13 @@
             </ul>
           </li>
 
+          <x-menu-item 
+            :href="route('statistics', now()->year)" 
+            icon="chart-bar"
+            :active="currentRouteActive('statistics')">
+            Statistiques
+          </x-menu-item>
+
           <li class="nav-item has-treeview {{ menuOpen(
                 'shop.edit',
                 'shop.update',
@@ -198,17 +205,7 @@
                 Maintenance
               </x-menu-item>
 
-
-
             </ul>
-
-            <x-menu-item 
-            :href="route('statistics', now()->year)" 
-            icon="chart-bar"
-            :active="currentRouteActive('statistics')">
-            Statistiques
-          </x-menu-item>
-
           </li>
         </ul>
       </nav>

@@ -31,7 +31,7 @@
             @if($order->invoice_id)
               <p>La facture a été générée avec l'id <strong>{{ $order->invoice_id }}</strong> et le numéro <strong>{{ $order->invoice_number }}</strong>.</p>
             @else
-            <form method="POST" action="{{ route('orders.invoice', $order->id) }}">
+              <form method="POST" action="{{ route('orders.invoice', $order->id) }}">
                 @csrf
                 <x-checkbox
                   name="paid"
@@ -49,7 +49,6 @@
           <h5 class="card-header">Bon de commande</h5>
           <div class="card-body">
             <form method="POST" action="{{ route('orders.updateNumber', $order->id) }}">
-            
               @method('PUT')
               @csrf   
               <x-inputbs4
@@ -195,3 +194,4 @@
   </div>
 
 @endsection
+

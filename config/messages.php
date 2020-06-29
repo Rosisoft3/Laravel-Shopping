@@ -10,7 +10,7 @@ return [
     'addressdeleted' => "L'adresse a bien été supprimée.",
     'shopupdated' => 'La boutique a bien été mise à jour.',
     'countryupdated' => 'Le pays a bien été mis à jour.',
-    'countrycreated' => 'Le pays a bien été créé.', 
+    'countrycreated' => 'Le pays a bien été créé.',
     'rangesupdated' => 'Les plages ont bien été mises à jour. Il est conseillé de mettre éventuellement à jour les tarifs d\'expédition.',
     'colissimosupdated' => 'Les tarifs Colissimo ont bien été mis à jour.',
     'stateupdated' => 'L\'état a bien été mis à jour.',
@@ -23,5 +23,4 @@ return [
     'maintenance' => 'La boutique est en mode maintenance.',
     'maintenanceupdated' => 'Le mode maintenance a bien été mis à jour.',
     'cacheupdated' => 'Le cache a bien été mis à jour.',
-
 ];

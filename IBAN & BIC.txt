@@ -1,0 +1,2 @@
+IBAN : FR7612548029989876543210917 (celui de la banque AXA)
+BIC : CMCIFRPP (celui du CIC)

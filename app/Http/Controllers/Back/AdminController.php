@@ -29,16 +29,23 @@ class AdminController extends Controller
         return view('back.index', compact('notifications', 'newUsers', 'newOrders'));
     }
 
+    /**
+     * Unread notifications
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $type
+     * @return \Illuminate\Http\Response
+     */
     public function read(Request $request, $type) 
-{ 
-    if($type === 'orders') {
-        $type = 'App\Notifications\NewOrder';
-    } else if($type === 'users') {
-        $type = 'App\Notifications\NewUser';
-    }
+    { 
+        if($type === 'orders') {
+            $type = 'App\Notifications\NewOrder';
+        } else if($type === 'users') {
+            $type = 'App\Notifications\NewUser';
+        }
 
-    $request->user()->unreadNotifications->where('type', $type)->markAsRead();
+        $request->user()->unreadNotifications->where('type', $type)->markAsRead();
 
-    return redirect(route('admin'));
-}
+        return redirect(route('admin'));
+    } 
 }

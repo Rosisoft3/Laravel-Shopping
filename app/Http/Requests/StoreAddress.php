@@ -24,8 +24,8 @@ class StoreAddress extends FormRequest
     public function rules()
     {        
         return [
-            'name' => 'required_unless:professionnal,"on"|string|max:100',
-            'firstname' => 'required_unless:professionnal,"on"|string|max:100',
+            'name' => 'required_unless:professionnal,"on"|nullable|string|max:100',
+            'firstname' => 'required_unless:professionnal,"on"|nullable|string|max:100',
             'company' => 'exclude_unless:professionnal,"on"|string|max:100',
             'address' => 'required|string|max:255',
             'addressbis' => 'nullable|string|max:255',

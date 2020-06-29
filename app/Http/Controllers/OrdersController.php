@@ -8,25 +8,35 @@ use App\Models\ { Order, Shop };
 class OrdersController extends Controller
 {
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function index(Request $request)
     {
         $orders = $request->user()->orders()->with('state')->get();
-    
+
         return view('account.orders.index', compact('orders'));
     }
 
-
+    /**
+     * Display the specified resource.
+     *
+     * @param  integer  $id
+     * @return \Illuminate\Http\Response
+     */
     public function show(Request $request, $id)
-{
-    $order = Order::with('products', 'state', 'adresses', 'adresses.country')->findOrFail($id);
+    {
+        $order = Order::with('products', 'state', 'adresses', 'adresses.country')->findOrFail($id);
 
-    $this->authorize('manage', $order);
+        $this->authorize('manage', $order);
 
-    $data = $this->data($request, $order);
+        $data = $this->data($request, $order);
 
-    return view('account.orders.show', $data);
-}
-
+        return view('account.orders.show', $data);
+    }
 
     /**
      * Show order confirmation.

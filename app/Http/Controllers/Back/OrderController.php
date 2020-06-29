@@ -38,7 +38,6 @@ class OrderController extends Controller
               ->get() :
           State::where('indice', '>=', $order->state->indice)->get();    
 
-       // return view('back.orders.show', compact('order', 'states', 'shop', 'annule_indice'));
         return view('back.orders.show', compact('order', 'states', 'annule_indice'));
     }
 

@@ -4,17 +4,14 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use App\Mail\Registered;
 use App\Models\{ User, Shop };
-
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Registered;
 use App\Notifications\NewUser;
-
-
 
 class RegisterController extends Controller
 {
@@ -63,7 +60,7 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
-
+    
     /**
      * Create a new user instance after a valid registration.
      *
@@ -71,32 +68,33 @@ class RegisterController extends Controller
      * @return \App\User
      */
     protected function create(array $data)
-{
-    return User::create([
-        'name' => $data['name'],
-        'firstname' => $data['firstname'],
-        'email' => $data['email'],
-        'password' => Hash::make($data['password']),
-        'newsletter' => array_key_exists('newsletter', $data),
-    ]);
-}
+    {
+        return User::create([
+            'name' => $data['name'],
+            'firstname' => $data['firstname'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'newsletter' => array_key_exists('newsletter', $data),
+        ]);
+    }
 
+    /**
+     * The user has been registered.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
+     */
+    protected function registered(Request $request, $user)
+    {
+        $shop = Shop::firstOrFail();
+        Mail::to($user)->send(new Registered($shop));
 
-protected function registered(Request $request, $user)
-{
-    $shop = Shop::firstOrFail();
-    Mail::to($user)->send(new Registered($shop));
-    $admins = User::whereAdmin(true)->get();
-    foreach($admins as $admin) {
-        // Là on prévoira de notifier les administrateurs
-        
         $admins = User::whereAdmin(true)->get();
         foreach($admins as $admin) {
             $admin->notify(new NewUser());
-        }    
-    }        
-    return redirect(route('adresses.create'))->with('message', config('messages.registered'));
-}
-}
+        }        
 
-
+        return redirect(route('adresses.create'))->with('message', config('messages.registered'));
+    }
+}

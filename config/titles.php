@@ -2,21 +2,14 @@
 
 return [
 
-    /*
-    |--------------------------------------------------------------------------
-    | Titles for routes names
-    |--------------------------------------------------------------------------
-    |
-    | Set Titles for each admin routes names
-    */
-
     'admin' => 'Tableau de bord',
+
     'back' => [
-        'adresses' => [
-            'index' => 'Gestion des adresses',
-            'show' => 'Consultation d\'une adresse',
-        ],
-    ],
+          'adresses' => [
+              'index' => 'Gestion des adresses',
+              'show' => 'Consultation d\'une adresse',
+          ],
+      ],
 
     'shop' => [
         'edit' => 'Gestion de la boutique',
@@ -65,7 +58,7 @@ return [
         'index' => 'Commandes',
         'show' => 'Gestion d\'une commande',
     ],
-    
+
     'maintenance' => [
         'edit' => 'Maintenance',
     ],

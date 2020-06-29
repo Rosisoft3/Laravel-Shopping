@@ -132,7 +132,7 @@
         <mj-text color="#FFF" font-size="16px" font-family="Helvetica" padding-left="25px" padding-right="25px" padding-top="10px">
 
           @if($order->payment === 'cheque')
-             <p>Veuillez nous envoyer un chèque avec :</p>
+          	 <p>Veuillez nous envoyer un chèque avec :</p>
         <ul>
           <li>montant du règlement : <strong>{{ number_format($order->totalOrder, 2, ',', ' ') }} €</strong></li>     
           <li>payable à l'ordre de <strong>{{ $shop->name }}</strong></li>
@@ -148,7 +148,7 @@
           @endif
 
           @if($order->payment === 'mandat')
-             <p>Vous avez choisi de payer par mandat administratif. Ce type de paiement est réservé aux administrations.</p>
+          	 <p>Vous avez choisi de payer par mandat administratif. Ce type de paiement est réservé aux administrations.</p>
         <p>Vous devez envoyer votre mandat administratif à :</p>
         <p><strong>{{ $shop->name }}</strong></p>
         <p><strong>{{ $shop->address }}</strong></p>

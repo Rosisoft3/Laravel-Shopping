@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\{ Product, Page };
 
 class HomeController extends Controller
@@ -19,9 +18,14 @@ class HomeController extends Controller
         return view('home', compact('products'));
     }
 
+    /**
+     * Show page
+     *
+     * @param  \App\Models\Page  $page
+     * @return \Illuminate\Http\Response
+     */
     public function page(Page $page)
-{
-    return view('page', compact('page'));
-}
-
+    {
+        return view('page', compact('page'));
+    }
 }

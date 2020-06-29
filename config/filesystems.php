@@ -48,6 +48,11 @@ return [
             'root' => storage_path('app'),
         ],
 
+        'invoices' => [
+            'driver' => 'local',
+            'root' => storage_path('app/invoices'),
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
@@ -63,11 +68,6 @@ return [
             'bucket' => env('AWS_BUCKET'),
             'url' => env('AWS_URL'),
             'endpoint' => env('AWS_ENDPOINT'),
-        ],
-        
-        'invoices' => [
-            'driver' => 'local',
-            'root' => storage_path('app/invoices'),
         ],
 
     ],

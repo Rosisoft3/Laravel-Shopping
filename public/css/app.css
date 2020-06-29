@@ -6272,6 +6272,10 @@ label {
 
 /* Style Placeholders */
 
+::-webkit-input-placeholder {
+  color: #d1d1d1;
+}
+
 ::-moz-placeholder {
   color: #d1d1d1;
 }
@@ -9173,6 +9177,14 @@ body {
   background-color: #f1f1ff;
 }
 
+.btn-large {
+  margin-bottom: 30px;
+}
+
+#account a {
+  width: 100%;
+}
+
 .page-footer {
   margin-top: 100px;
 }
@@ -9244,13 +9256,5 @@ body {
   100% {
     transform: rotate(360deg);
   }
-}
-
-.btn-large {
-  margin-bottom: 30px;
-}
-
-#account a {
-  width: 100%;
 }
 

@@ -10,9 +10,8 @@ class OrderAddress extends Model
         'name', 'firstname', 'professionnal', 'civility', 'company', 'address', 'addressbis', 'bp', 'postal', 'city', 'phone', 'country_id', 'facturation',
     ];
 
-
     public function country()
-{
-    return $this->belongsTo(Country::class);
-}
+    {
+        return $this->belongsTo(Country::class);
+    } 
 }

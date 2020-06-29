@@ -10,6 +10,11 @@ use App\Models\User;
 
 class UsersChart extends CommonChart
 {
+    /**
+     * Handles the HTTP request for the given chart.
+     * It must always return an instance of Chartisan
+     * and never a string or an array.
+     */
     public function handler(Request $request): Chartisan
     {
         return $this->chartisan(new User, 'Nouveaux clients');

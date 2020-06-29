@@ -3,19 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\ { Address, Country, Shop, State, Product, User, Page };
 use App\Services\Shipping;
 use Illuminate\Support\Str;
 use Cart;
-
-use App\Models\ { Address, Country, Shop, State, Product, User, Page,Order };
 use Illuminate\Support\Facades\Mail;
 use App\Mail\{ NewOrder, ProductAlert, Ordered };
 use App\Notifications\NewOrder as NewOrderNotification;
 
 class OrderController extends Controller
 {
-
-
     /**
      * Show the form for creating a new resource.
      *
@@ -28,7 +25,6 @@ class OrderController extends Controller
         $addresses = $request->user()->addresses()->get();
 
         if($addresses->isEmpty()) {
-            // Là il faudra renvoyer l'utilisateur sur son compte quand on l'aura créé
             return redirect()->route('adresses.create')->with('message', 'Vous devez créer au moins une adresse pour passer une commande.');
         }
 
@@ -113,12 +109,11 @@ class OrderController extends Controller
             $product->save();
             // Alerte stock
             if($product->quantity <= $product->quantity_alert) {
-                // Notifications à prévoir pour les administrateurs
                 $shop = Shop::firstOrFail();
-                 $admins = User::whereAdmin(true)->get();
+                $admins = User::whereAdmin(true)->get();
                 foreach($admins as $admin) {
-                Mail::to($admin)->send(new ProductAlert($shop, $product));
-                 }  
+                    Mail::to($admin)->send(new ProductAlert($shop, $product));
+                }  
             }
         }
 
@@ -126,20 +121,18 @@ class OrderController extends Controller
         Cart::clear();
         Cart::session($request->user())->clear();
 
-        // Notifications à prévoir pour les administrateurs et l'utilisateur
+        // Notification à l'administrateur
         $shop = Shop::firstOrFail();
         $admins = User::whereAdmin(true)->get();
         foreach($admins as $admin) {
             Mail::to($admin)->send(new NewOrder($shop, $order, $user));
-            // On ajoutera une notification ici
             $admin->notify(new NewOrderNotification($order));
         }        
                 
         // Notification au client
         $page = Page::whereSlug('conditions-generales-de-vente')->first();
         Mail::to($request->user())->send(new Ordered($shop, $order, $page));
-        
-        return redirect(route('commandes.confirmation', $order->id));
 
+        return redirect(route('commandes.confirmation', $order->id));
     }
 }

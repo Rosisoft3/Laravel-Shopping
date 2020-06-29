@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Policies;
+
 use App\Models\ { User, Address };
 use Illuminate\Auth\Access\HandlesAuthorization;
 

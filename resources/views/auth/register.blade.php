@@ -63,8 +63,7 @@
             <div class="row col s12">
               <label>
                 <input type="checkbox" name="rgpd" id="rgpd" {{ old('rgpd') ? 'checked' : '' }}>
-                <!-- Route Page -->
-                <span>J'accepte les termes et conditions de <a href="{{ route('login', 'politique-de-confidentialite') }}" target="_blank">la politique de confidentialité</a>.</span>
+                <span>J'accepte les termes et conditions de <a href="#" target="_blank">la politique de confidentialité</a>.</span>
               </label>
             </div>
             

@@ -36,7 +36,7 @@
         <div class="card">
           <div class="card-image">
             @if($product->quantity)
-            <a href="{{ route('produits.show', $product->id) }}">
+              <a href="{{ route('produits.show', $product->id) }}">
             @endif
               <img src="/images/thumbs/{{ $product->image }}">
             @if($product->quantity) </a> @endif
@@ -53,6 +53,6 @@
       @endforeach
     </div>
   </div>
-  
+
 </div>
 @endsection

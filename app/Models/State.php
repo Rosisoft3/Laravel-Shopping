@@ -12,12 +12,14 @@ class State extends Model
         'color', 
         'indice', 
     ];
+
     public $timestamps = false;
-
-
+        
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function orders()
-{
-    return $this->hasMany(Order::class);
-}
-
+    {
+        return $this->hasMany(Order::class);
+    }
 }

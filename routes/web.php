@@ -15,26 +15,40 @@ use Illuminate\Support\Facades\Route;
 
 // Administration
 Route::prefix('admin')->middleware('admin')->namespace('Back')->group(function () {
+    Route::name('admin')->get('/', 'AdminController@index');
+    Route::name('read')->put('read/{type}', 'AdminController@read');
+    Route::name('statistics')->get('statistiques/{year}', 'StatisticsController');
     
+    Route::name('shop.edit')->get('boutique', 'ShopController@edit');
+    Route::name('shop.update')->put('boutique', 'ShopController@update');
+
     Route::resource('pays', 'CountryController')->except('show')->parameters([
-        'pays' => 'pays'
-      ]);
-      Route::name('pays.destroy.alert')->get('pays/{pays}', 'CountryController@alert');
-      Route::name('plages.edit')->get('plages/modification', 'RangeController@edit');
-      Route::name('plages.update')->put('plages', 'RangeController@update');
-      Route::name('colissimos.edit')->get('colissimos/modification', 'ColissimoController@edit');
-      Route::name('colissimos.update')->put('colissimos', 'ColissimoController@update');
-      Route::resource('etats', 'StateController')->except('show');
-      Route::name('etats.destroy.alert')->get('etats/{etat}', 'StateController@alert');
-      Route::resource('pages', 'PageController')->except('show');
-      Route::name('pages.destroy.alert')->get('pages/{page}', 'PageController@alert');
-      Route::resource('produits', 'ProductController')->except('show');
-      Route::name('produits.destroy.alert')->get('produits/{produit}', 'ProductController@alert');
-      Route::resource('clients', 'UserController')->only(['index', 'show']);
-      Route::resource('adresses', 'AddressController')->names([
+      'pays' => 'pays'
+    ]);
+    Route::name('pays.destroy.alert')->get('pays/{pays}', 'CountryController@alert');
+
+    Route::name('plages.edit')->get('plages/modification', 'RangeController@edit');
+    Route::name('plages.update')->put('plages', 'RangeController@update');
+
+    Route::name('colissimos.edit')->get('colissimos/modification', 'ColissimoController@edit');
+    Route::name('colissimos.update')->put('colissimos', 'ColissimoController@update');
+
+    Route::resource('etats', 'StateController')->except('show');
+    Route::name('etats.destroy.alert')->get('etats/{etat}', 'StateController@alert');
+
+    Route::resource('pages', 'PageController')->except('show');
+    Route::name('pages.destroy.alert')->get('pages/{page}', 'PageController@alert');
+
+    Route::resource('produits', 'ProductController')->except('show');
+    Route::name('produits.destroy.alert')->get('produits/{produit}', 'ProductController@alert');
+
+    Route::resource('clients', 'UserController')->only(['index', 'show']);
+
+    Route::resource('adresses', 'AddressController')->names([
         'index' => 'back.adresses.index',
         'show' => 'back.adresses.show',
     ])->only(['index', 'show']);
+
     Route::resource('commandes', 'OrderController')->only(['index', 'show', 'update'])->names([
         'index' => 'orders.index',
         'show' => 'orders.show',
@@ -46,13 +60,6 @@ Route::prefix('admin')->middleware('admin')->namespace('Back')->group(function (
     Route::name('maintenance.edit')->get('maintenance/modification', 'MaintenanceController@edit');
     Route::name('maintenance.update')->put('maintenance', 'MaintenanceController@update');
     Route::name('cache.update')->put('cache', 'MaintenanceController@cache');
-    Route::name('statistics')->get('statistiques/{year}', 'StatisticsController');
-
-    Route::name('admin')->get('/', 'AdminController@index');
-    Route::name('read')->put('read/{type}', 'AdminController@read');
-    
-    Route::name('shop.edit')->get('boutique', 'ShopController@edit');
-    Route::name('shop.update')->put('boutique', 'ShopController@update');
 });
 
 // Accueil boutique et panier

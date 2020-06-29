@@ -8,16 +8,15 @@
       <div class="card">
         <form  method="POST" action="{{ route('login') }}">
           @if(url()->previous() === route('panier.index'))
-          <div class="col s12">
-            <div class="card purple darken-3">
-              <div class="card-content white-text center-align">
-                Vous devez être connecté pour passer une commande, si vous n'avez pas encore de compte vous pouvez en créer un en utilisant le lien sous ce formulaire.
+            <div class="col s12">
+              <div class="card purple darken-3">
+                <div class="card-content white-text center-align">
+                  Vous devez être connecté pour passer une commande, si vous n'avez pas encore de compte vous pouvez en créer un en utilisant le lien sous ce formulaire.
+                </div>
               </div>
             </div>
-          </div>
-        @endif
-
-        <div class="card-content">
+          @endif
+          <div class="card-content">
             @csrf
             <span class="card-title">Connexion</span>
 

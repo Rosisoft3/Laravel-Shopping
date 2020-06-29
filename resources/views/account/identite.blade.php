@@ -6,7 +6,7 @@
   <div class="row">
     <div class="col s12 m10 offset-m1 l8 offset-l2">
       <div class="card">
-        <form  method="POST" action="#">
+        <form  method="POST" action="{{ route('identite.update') }}">
           @csrf
           @method('PUT')
 
@@ -52,14 +52,14 @@
             <div class="row col s12">
               <label>
                 <input type="checkbox" name="newsletter" id="newsletter" {{ old('newsletter', $user->newsletter) ? 'checked' : '' }}>
-                <span>{{ config('message.newletter') }}</span>
+                <span>{{ config('messages.newletter') }}</span>
               </label>
             </div>
 
             <div class="row col s12">
               <label>
                 <input type="checkbox" name="rgpd" id="rgpd" {{ old('rgpd') ? 'checked' : '' }}>
-                <span>{{ config('message.accept') }}</span>
+                <span>{{ config('messages.accept') }}</span>
               </label>
             </div>
             

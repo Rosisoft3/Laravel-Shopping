@@ -26,7 +26,6 @@ class Shop extends Model
         'check',
         'mandat',
     ];
-    
-    public $timestamps = false;
 
+    public $timestamps = false;
 }

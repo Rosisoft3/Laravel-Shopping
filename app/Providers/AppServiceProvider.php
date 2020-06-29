@@ -3,16 +3,14 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Route;
-use Cart;
-use DB;
-
-use ConsoleTVs\Charts\Registrar as Charts;
-use App\Charts\{OrdersChart,UsersChart};
-
 use App\Models\{ Shop, Page };
+use Cart;
+use ConsoleTVs\Charts\Registrar as Charts;
+use App\Charts\{ OrdersChart, UsersChart };
+use DB;
+use Illuminate\Support\Facades\Schema; 
 
 
 class AppServiceProvider extends ServiceProvider
@@ -34,32 +32,33 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(Charts $charts)
     {
+
         Schema::defaultStringLength(191);
         DB::statement("SET lc_time_names = 'fr_FR'");
+
         $charts->register([
             OrdersChart::class,
-            UsersChart::class,
-
+            UsersChart::class
         ]);
-        
-        View::composer('back.layout', function ($view) {
-            $title = config('titles.' . Route::currentRouteName());
-            $view->with(compact('title'));
-        });
 
+        View::share('shop', Shop::firstOrFail());
         View::share('pages', Page::all());
-		View::share('shop', Shop::firstOrFail());
-		View::composer(['layouts.app', 'products.show'], function ($view) {
-            $view->with([
-                'cartCount' => Cart::getTotalQuantity(), 
-                'cartTotal' => Cart::getTotal(),
-            ]);
-        });
 
         Route::resourceVerbs([
             'edit' => 'modification',
             'create' => 'creation',
         ]);
-       
-    } 
+    
+        View::composer(['layouts.app', 'products.show'], function ($view) {
+            $view->with([
+                'cartCount' => Cart::getTotalQuantity(), 
+                'cartTotal' => Cart::getTotal(),
+            ]);
+        });
+        
+        View::composer('back.layout', function ($view) {
+            $title = config('titles.' . Route::currentRouteName());
+            $view->with(compact('title'));
+        });
+    }
 }
